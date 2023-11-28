@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Recursive&display=swap" rel="stylesheet"> 
+    <title>Calculator</title>
+    <style>
+        *
+        {
+            box-sizing: border-box;
+            font-family: 'Recursive', sans-serif;
+        }
+        body
+        {
+            margin: 0px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+        }
+        html
+        {
+            scroll-behavior: smooth;
+        }
+        .con
+        {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            height: auto;
+            width: fit-content;
+            background-color: #000;
+            border-radius: 30px;
+        }
+        .mar
+        {
+            margin: 30px 0px;
+            border: solid 1px #ddd;
+            width: 235px;
+            height: 80px;
+            border-radius: 5px;
+            padding: 10px;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            color: #fff;
+            font-size: 20px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            letter-spacing: 2px;
+            background-color: #242424;
+            position: relative;
+        }
+        .varone
+        {
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: rgb(163 163 163);
+            font-size: 13px;
+            padding: 5px;
+        }
+        .buto
+        {
+            border-radius: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 55px;
+            height: 55px;
+            font-size: 23px;
+            border: unset;
+            background-color: #333;
+            color: #fff;
+            transition: .3s;
+            cursor: pointer;
+            margin: 2px;
+        }
+        .buto:last-child
+        {
+            background-color: #007180;
+            width: calc(100% - 70px);
+            border-radius: 15px;
+            margin-top: 10px;
+        }
+        .buto:hover
+        {
+            background-color: #1a1a1a;
+        }
+        .buto:last-child:hover
+        {
+            background-color: #005763;
+        }
+    </style>
+</head>
+<body>
+    <div class="con">
+    <div class="result" id="res">
+        <span id="x-res"></span>
+        <span id="sin-res"></span>
+        <span id="y-res"></span>
+    </div>
+    <div class="mar">
+        <div class="varone" id="varone"></div>
+        <div id="lcd"></div>
+    </div>
+    <div class="buttons">
+        <button onclick="num(1);" class="buto">1</button>
+        <button onclick="num(2);" class="buto">2</button>
+        <button onclick="num(3);" class="buto">3</button>
+        <button onclick="oper(4);" class="buto">÷</button>
+        <br>
+        <button onclick="num(4);" class="buto">4</button>
+        <button onclick="num(5);" class="buto">5</button>
+        <button onclick="num(6);" class="buto">6</button>
+        <button onclick="oper(1);" class="buto">-</button>
+        <br>
+        <button onclick="num(7);" class="buto">7</button>
+        <button onclick="num(8);" class="buto">8</button>
+        <button onclick="num(9);" class="buto">9</button>
+        <button onclick="oper(2);" class="buto">+</button>
+        <br>
+        <button onclick="oper(3);" class="buto">×</button>
+        <button onclick="num(0);" class="buto">0</button>
+        <button onclick="num(11);" class="buto">.</button>
+        <button onclick="oper(5);" class="buto">c</button>
+        <br>
+        <button onclick="dell();" class="buto del">⌦</button>
+        <button onclick="calc();" id="equal" class="buto">=</button>
+    </div>
+    </div>
+    <script>
+        function num(ko) {
+            if (ko==1) {
+                document.getElementById('lcd').innerHTML += 1;
+            }
+            if (ko==2) {
+                document.getElementById('lcd').innerHTML += 2;
+            }
+            if (ko==3) {
+                document.getElementById('lcd').innerHTML += 3;
+            }
+            if (ko==4) {
+                document.getElementById('lcd').innerHTML += 4;
+            }
+            if (ko==5) {
+                document.getElementById('lcd').innerHTML += 5;
+            }
+            if (ko==6) {
+                document.getElementById('lcd').innerHTML += 6;
+            }
+            if (ko==7) {
+                document.getElementById('lcd').innerHTML += 7;
+            }
+            if (ko==8) {
+                document.getElementById('lcd').innerHTML += 8;
+            }
+            if (ko==9) {
+                document.getElementById('lcd').innerHTML += 9;
+            }
+            if (ko==0) {
+                document.getElementById('lcd').innerHTML += 0;
+            }
+            if (ko==11) {
+                document.getElementById('lcd').innerHTML += '.';
+            }
+        }
+        
+        function oper(ig) {
+
+            if (ig==1) {
+                var txt = document.getElementById('lcd').innerHTML;
+                document.getElementById('varone').innerHTML = txt;
+                document.getElementById('lcd').innerHTML = "";
+                document.getElementById('equal').setAttribute('onclick','mine();');
+            } else if (ig==2) {
+                var txt = document.getElementById('lcd').innerHTML;
+                document.getElementById('varone').innerHTML = txt;
+                document.getElementById('lcd').innerHTML = "";
+                document.getElementById('equal').setAttribute('onclick','pluse();');
+            } else if (ig==3) {
+                var txt = document.getElementById('lcd').innerHTML;
+                document.getElementById('varone').innerHTML = txt;
+                document.getElementById('lcd').innerHTML = "";
+                document.getElementById('equal').setAttribute('onclick','crosse();');
+            } else if (ig==4) {
+                var txt = document.getElementById('lcd').innerHTML;
+                document.getElementById('varone').innerHTML = txt;
+                document.getElementById('lcd').innerHTML = "";
+                document.getElementById('equal').setAttribute('onclick','qesma();');
+            } else if (ig==5) {
+                document.getElementById('lcd').innerHTML = "";
+            }
+        }
+
+        function crosse() {
+            var y = document.getElementById('lcd').innerHTML;
+            var x = document.getElementById('varone').innerHTML;
+            document.getElementById('lcd').innerHTML = +x * +y;
+            document.getElementById('varone').innerHTML = "";
+        }
+        function qesma() {
+            var y = document.getElementById('lcd').innerHTML;
+            var x = document.getElementById('varone').innerHTML;
+            document.getElementById('lcd').innerHTML = +x / +y;
+            document.getElementById('varone').innerHTML = "";
+        }
+        function mine() {
+            var y = document.getElementById('lcd').innerHTML;
+            var x = document.getElementById('varone').innerHTML;
+            document.getElementById('lcd').innerHTML = +x - +y;
+            document.getElementById('varone').innerHTML = "";
+        }
+        function pluse() {
+            var y = document.getElementById('lcd').innerHTML;
+            var x = document.getElementById('varone').innerHTML;
+            document.getElementById('lcd').innerHTML = +x + +y;
+            document.getElementById('varone').innerHTML = "";
+        }
+
+
+        function dell() {
+            let str = document.getElementById('lcd').innerHTML;
+            str = str.slice(0, -1);
+            document.getElementById('lcd').innerHTML = str;
+        }
+    </script>
+</body>
+</html>
